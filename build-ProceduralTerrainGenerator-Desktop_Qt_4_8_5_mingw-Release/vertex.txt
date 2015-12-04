@@ -1,0 +1,31 @@
+#version 120
+ 
+layout(location = 0) in vec3 InVertex;
+//layout(location = 1) in vec3 InColor;
+
+uniform mat4 MVP;
+
+uniform float maxHeight;
+
+out vec3 Color;
+
+
+void main()
+{
+	vec4 v = vec4(InVertex,1);
+	gl_Position = MVP * v;
+
+	vec3 computedColor;
+
+	//if(InVertex.y == 0)
+	//{
+	//	float r = 237.f / 255.f;
+	//	float g = 201.f / 255.f;
+	//	float b = 175.f / 255.f;
+	//	computedColor = vec3(0, 0, 1);
+	//}
+	//else
+		computedColor = vec3(0, InVertex.y / maxHeight , 0);
+	  
+	Color = computedColor;
+}
